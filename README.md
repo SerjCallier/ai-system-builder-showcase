@@ -55,17 +55,17 @@ graph TD
         end
         
         subgraph AI [LLM Orchestration]
-            SONNET["Claude 4.6 Sonnet<br/>Fast Triage and Replies"] ::: llm
-            OPUS["Claude 4.6 Opus<br/>Deep Reasoning and SEO"] ::: llm
-            LOCAL["Ollama<br/>Offline Fallback"] ::: llm
+            SONNET["Claude 4.6 Sonnet<br/>Fast Triage and Replies"]:::llm
+            OPUS["Claude 4.6 Opus<br/>Deep Reasoning and SEO"]:::llm
+            LOCAL["Ollama<br/>Offline Fallback"]:::llm
         end
     end
 
     %% Output
     subgraph Output [Actionable Output]
-        S_URG["Slack<br/>#alerts-urgent"] ::: output
-        S_APP["Slack<br/>#content-approval"] ::: output
-        META["Metabase<br/>Dashboards"] ::: output
+        S_URG["Slack<br/>#alerts-urgent"]:::output
+        S_APP["Slack<br/>#content-approval"]:::output
+        META["Metabase<br/>Dashboards"]:::output
     end
 
     %% Flows
