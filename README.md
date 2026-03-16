@@ -51,12 +51,12 @@ graph TD
             T_LEADS[(leads)]
             T_PROJ[(projects)]
             T_WA[(whatsapp_messages)]
-            T_SEO[(keywords & drafts)]
+            T_SEO[(keywords and drafts)]
         end
         
         subgraph AI [LLM Orchestration]
-            SONNET[Claude 4.6 Sonnet<br/>Fast Triage & Replies] ::: llm
-            OPUS[Claude 4.6 Opus<br/>Deep Reasoning & SEO] ::: llm
+            SONNET[Claude 4.6 Sonnet<br/>Fast Triage and Replies] ::: llm
+            OPUS[Claude 4.6 Opus<br/>Deep Reasoning and SEO] ::: llm
             LOCAL[Ollama<br/>Offline Fallback] ::: llm
         end
     end
