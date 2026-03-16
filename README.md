@@ -31,41 +31,41 @@ graph TD
 
     %% Data Sources
     subgraph Sources [External Data Sources]
-        FB[Facebook Ads<br/>Marketing API]
-        WA[WhatsApp Business<br/>Group Chats]
-        SEM[SEMrush<br/>Keyword DB]
-        WP[WordPress<br/>CMS]
+        FB["Facebook Ads<br/>Marketing API"]
+        WA["WhatsApp Business<br/>Group Chats"]
+        SEM["SEMrush<br/>Keyword DB"]
+        WP["WordPress<br/>CMS"]
     end
 
     %% Ingestion
     subgraph Ingestion [Python Ingestion Layer]
-        I_FB[ingest_fb_ads.py]
-        I_WA[process_whatsapp.py<br/>suggest_wa_reply.py]
-        I_SEO[ingest_semrush.py<br/>generate_seo_content.py]
+        I_FB["ingest_fb_ads.py"]
+        I_WA["process_whatsapp.py<br/>suggest_wa_reply.py"]
+        I_SEO["ingest_semrush.py<br/>generate_seo_content.py"]
     end
 
     %% Central Brain
     subgraph Brain [🧠 CORE BRAIN - Mac Mini]
         subgraph DB [PostgreSQL 15]
-            T_ADS[(ad_campaigns)]
-            T_LEADS[(leads)]
-            T_PROJ[(projects)]
-            T_WA[(whatsapp_messages)]
-            T_SEO[(keywords and drafts)]
+            T_ADS[("ad_campaigns")]
+            T_LEADS[("leads")]
+            T_PROJ[("projects")]
+            T_WA[("whatsapp_messages")]
+            T_SEO[("keywords and drafts")]
         end
         
         subgraph AI [LLM Orchestration]
-            SONNET[Claude 4.6 Sonnet<br/>Fast Triage and Replies] ::: llm
-            OPUS[Claude 4.6 Opus<br/>Deep Reasoning and SEO] ::: llm
-            LOCAL[Ollama<br/>Offline Fallback] ::: llm
+            SONNET["Claude 4.6 Sonnet<br/>Fast Triage and Replies"] ::: llm
+            OPUS["Claude 4.6 Opus<br/>Deep Reasoning and SEO"] ::: llm
+            LOCAL["Ollama<br/>Offline Fallback"] ::: llm
         end
     end
 
     %% Output
     subgraph Output [Actionable Output]
-        S_URG[Slack<br/>#alerts-urgent] ::: output
-        S_APP[Slack<br/>#content-approval] ::: output
-        META[Metabase<br/>Dashboards] ::: output
+        S_URG["Slack<br/>#alerts-urgent"] ::: output
+        S_APP["Slack<br/>#content-approval"] ::: output
+        META["Metabase<br/>Dashboards"] ::: output
     end
 
     %% Flows
