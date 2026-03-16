@@ -1,5 +1,5 @@
-# AI Systems Builder — Architectural Proof of Concept / Creador de Sistemas de IA — Prueba de Concepto
-### *Intelligent Data Unification for a Remodeling Construction Company / Unificación inteligente de datos para empresa de remodelación*
+# AI Systems Builder — Architectural Proof of Concept
+### *Intelligent Data Unification for a Remodeling Construction Company*
 
 [![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://python.org)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15+-336791.svg)](https://postgresql.org)
@@ -8,9 +8,9 @@
 
 ---
 
-## 🎯 Executive Summary / Resumen Ejecutivo
+## 🇺🇸 English Version
 
-**English:**
+### 🎯 Executive Summary
 This repository demonstrates a **centralized AI-orchestration architecture** that unifies fragmented data sources — Facebook Ads, WhatsApp Business, WordPress, and SEMrush — into a single PostgreSQL *Core Brain* database hosted on a Mac Mini. 
 
 The system automates the manual workflows of a highly-active residential remodeling company by:
@@ -18,18 +18,7 @@ The system automates the manual workflows of a highly-active residential remodel
 2. Monitoring high-volume **WhatsApp group chats** for project emergencies and suggesting AI-drafted replies.
 3. Replacing vanity ad metrics with **true revenue attribution** connected to signed contracts.
 
-**Español:**
-Este repositorio demuestra una **arquitectura de orquestación de IA centralizada** que unifica fuentes de datos fragmentadas (Facebook Ads, WhatsApp Business, WordPress y SEMrush) en una única base de datos PostgreSQL *Core Brain* alojada localmente en una Mac Mini.
-
-El sistema automatiza los flujos manuales de una empresa de remodelaciones residenciales mediante:
-1. La orquestación de un **pipeline de SEO (Keyword-a-Blog)** totalmente automatizado con generación de esquemas JSON-LD.
-2. Monitoreo de **grupos de WhatsApp** de alto volumen para detectar emergencias y sugerir respuestas redactadas por IA.
-3. Reemplazo de métricas de anuncios vanidosas por **atribución de ingresos real** conectada a contratos firmados.
-
----
-
-## 🏛️ System Architecture / Arquitectura del Sistema
-
+### 🏛️ System Architecture
 ```mermaid
 graph TD
     classDef default fill:#f9f9f9,stroke:#333,stroke-width:1px;
@@ -98,98 +87,85 @@ graph TD
     T_LEADS -. "Lead ID" .-> T_PROJ
 ```
 
----
+### 📐 Data & AI Strategy
 
-## 📐 Data & AI Strategy / Estrategia de IA y Datos
-
-### 1. Hybrid LLM Architecture / Arquitectura de LLM Híbrida
-**English:**
-This system uses a **tiered LLM strategy** managed via `litellm`, which provides a unified API across providers:
+#### 1. Hybrid LLM Architecture: The Right Model for the Right Job
+This system uses a **tiered LLM strategy** managed via `litellm`:
 
 | Use Case | Model | Rationale |
 |---|---|---|
-| **WhatsApp Urgency Detection** | `claude-sonnet-4-5` | Low latency (<2s), high throughput, cost-efficient for high-volume chat classification |
-| **WhatsApp Response Drafts** | `claude-sonnet-4-5` | Extremely competent at taking context and immediately returning conversational replies |
-| **SEO Blog Generation** | `claude-opus-4-5` | Deep reasoning for long-form, factually accurate, strategically targeted construction content |
-| **Private / Offline Fallback** | `ollama/llama3` | Runs locally on Mac Mini; zero data egress; used for sensitive internal project notes |
+| **WhatsApp Urgency Detection** | `claude-sonnet-4-5` | Low latency (<2s), high throughput for chat classification |
+| **WhatsApp Response Drafts** | `claude-sonnet-4-5` | Conversational competence and fast response generation |
+| **SEO Blog Generation** | `claude-opus-4-5` | Deep reasoning for strategically targeted construction content |
+| **Private / Offline Fallback** | `ollama/llama3` | Runs locally on Mac Mini; zero data egress |
 
-**Español:**
-El sistema emplea una **estrategia de LLM por niveles** gestionada mediante `litellm`, optimizando costo y rendimiento:
-
-*   **Claude 4.6 Sonnet**: Utilizado para tareas de baja latencia como la detección de urgencias en WhatsApp y borradores de respuesta rápidos.
-*   **Claude 4.6 Opus**: Reservado para tareas de razonamiento profundo, como generación de contenido SEO estratégico y esquemas JSON-LD técnicos.
-*   **Ollama (Llama3)**: Fallback local para privacidad total y procesamiento offline dentro de la Mac Mini.
-
----
-
-### 2. Revenue Attribution / Atribución de Ingresos
-**English:**
-The critical business problem is attribution — knowing *which* Facebook campaign generated a *real* signed contract, not just a lead form fill. This is solved through a **relational chain** in the Core Brain:
-
+#### 2. Revenue Attribution: Closing the Loop
+Relational chain in the Core Brain:
 ```
 ad_campaigns.ad_id  ──→  leads.source_ad_id  ──→  projects.lead_id
      (FB Spend $)          (First Touch)          (Closed Revenue $)
 ```
-
-**Español:**
-El sistema resuelve el problema crítico de la atribución: identificar qué campaña de anuncios generó un **contrato real firmado** y no solo un lead. Esto se logra vinculando el ID del anuncio original con el lead y, finalmente, con el proyecto facturado en la base de datos central.
+A simple SQL JOIN across these tables yields **true ROAS**.
 
 ---
 
-## 🚀 How to Run (Mock Simulation)
+## 🇲🇽 Versión en Español
 
-> **Note:** All data sources are mocked. No real API keys are required. The system uses an in-memory SQLite database and prints accurate Slack Block Kit payloads to the console to visualize the workflow.
+### 🎯 Resumen Ejecutivo
+Este repositorio demuestra una **arquitectura de orquestación de IA centralizada** que unifica fuentes de datos fragmentadas — Facebook Ads, WhatsApp Business, WordPress y SEMrush — en una única base de datos PostgreSQL *Core Brain* alojada localmente en una Mac Mini.
+
+El sistema automatiza los flujos manuales de una empresa de remodelaciones residenciales mediante:
+1. **Pipeline de SEO**: Keyword-a-Blog totalmente automatizado con esquemas JSON-LD.
+2. **Monitoreo de WhatsApp**: Triage de emergencias y sugerencias de respuestas instantáneas.
+3. **Atribución Real**: Conexión entre el gasto publicitario y los contratos cerrados (ROAS real).
+
+### 📐 Estrategia de IA y Datos
+
+#### 1. Arquitectura de LLM Híbrida
+El sistema optimiza costo y rendimiento mediante niveles:
+*   **Claude 4.6 Sonnet**: Tareas de baja latencia (WhatsApp y borradores rápidos).
+*   **Claude 4.6 Opus**: Razonamiento profundo (SEO estratégico y técnica JSON-LD).
+*   **Ollama (Llama3)**: Procesamiento local privado y fallback offline.
+
+#### 2. Atribución de Ingresos
+El sistema vincula el ID del anuncio original con el lead y el proyecto facturado, permitiendo conocer qué campaña generó dinero real y no solo "leads" de formularios.
+
+---
+
+## 🚀 Installation & Setup / Instalación
 
 ```bash
-# 1. Clone the repository
-git clone https://github.com/your-org/AI-Systems-Builder.git
-cd AI-Systems-Builder
+# 1. Clone / Clonar
+git clone https://github.com/SerjCallier/ai-system-builder-showcase.git
+cd ai-system-builder-showcase
 
-# 2. Create and activate a virtual environment
+# 2. Environment / Entorno
 python -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
 
-# 3. Install dependencies
+# 3. Dependencies / Dependencias
 pip install -r requirements.txt
 
-# 4. Configure environment variables (mock defaults are provided)
-cp .env.example .env
-
-# 5. Run the full end-to-end simulation
+# 4. Run / Ejecutar
 python main.py
 ```
 
 ---
 
-## 📁 Project Structure
-
+## 📁 Project Structure / Estructura del Proyecto
 ```text
 AI-Systems-Builder/
 ├── README.md                 ← You are here
-├── requirements.txt          ← Python dependencies (pandas, litellm, sqlalchemy)
-├── config.py                 ← Environment settings & Slack Webhooks
-├── main.py                   ← Simulation entry point (Run this!)
-├── .env.example              ← Template for environment variables
+├── requirements.txt          ← Python dependencies
+├── config.py                 ← Settings & Webhooks
+├── main.py                   ← Simulation entry point
 ├── core/
-│   ├── slack.py              ← Slack Block Kit API integration templates
-│   └── db.py                 ← SQLAlchemy models: Ads, Leads, WA, Projects, SEO
+│   ├── slack.py              ← Slack Block Kit Templates
+│   └── db.py                 ← SQLAlchemy Models
 └── scripts/
-    ├── ingest_semrush.py        ← Keyword Pipeline (Volume, Intent, Priority)
-    ├── generate_seo_content.py  ← Claude Opus Blog + JSON-LD Generator
-    ├── suggest_wa_reply.py      ← AI-drafted automated replies
-    ├── ingest_fb_ads.py         ← ROI evaluator and Split-Test Generator
-    └── process_whatsapp.py      ← Chat monitoring and AI triage
+    ├── ingest_semrush.py        ← Keyword Pipeline
+    ├── generate_seo_content.py  ← AI Blog Generator
+    ├── suggest_wa_reply.py      ← AI Automated Replies
+    ├── ingest_fb_ads.py         ← ROI Evaluator
+    └── process_whatsapp.py      ← Chat Monitoring
 ```
-
----
-
-## 🔮 Roadmap to Production
-
-- [ ] **Website-to-WhatsApp Chatbot:** Implement FastAPI webhook endpoint for inbound leads, integrating a curated RAG dataset of company knowledge.
-- [ ] Connect production Metabase to the PostgreSQL Core Brain for the stakeholder dashboard.
-- [ ] Replace mock functions with live API clients (Facebook Marketing API v20, WhatsApp Cloud API).
-- [ ] Wire the `core.slack.SlackClient` into interactive Block Kit buttons ("Approve Draft", "Send Reply").
-- [ ] Schedule data ingestion jobs via a localized instance of `Airflow` on the Mac Mini.
-
----
-*Built incrementally for scale.*
