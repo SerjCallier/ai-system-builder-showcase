@@ -1,5 +1,5 @@
-# AI Systems Builder — Architectural Proof of Concept
-### *Intelligent Data Unification for a Remodeling Construction Company*
+# AI Systems Builder — Architectural Proof of Concept / Creador de Sistemas de IA — Prueba de Concepto
+### *Intelligent Data Unification for a Remodeling Construction Company / Unificación inteligente de datos para empresa de remodelación*
 
 [![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://python.org)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15+-336791.svg)](https://postgresql.org)
@@ -8,8 +8,9 @@
 
 ---
 
-## 🎯 Executive Summary
+## 🎯 Executive Summary / Resumen Ejecutivo
 
+**English:**
 This repository demonstrates a **centralized AI-orchestration architecture** that unifies fragmented data sources — Facebook Ads, WhatsApp Business, WordPress, and SEMrush — into a single PostgreSQL *Core Brain* database hosted on a Mac Mini. 
 
 The system automates the manual workflows of a highly-active residential remodeling company by:
@@ -17,9 +18,17 @@ The system automates the manual workflows of a highly-active residential remodel
 2. Monitoring high-volume **WhatsApp group chats** for project emergencies and suggesting AI-drafted replies.
 3. Replacing vanity ad metrics with **true revenue attribution** connected to signed contracts.
 
+**Español:**
+Este repositorio demuestra una **arquitectura de orquestación de IA centralizada** que unifica fuentes de datos fragmentadas (Facebook Ads, WhatsApp Business, WordPress y SEMrush) en una única base de datos PostgreSQL *Core Brain* alojada localmente en una Mac Mini.
+
+El sistema automatiza los flujos manuales de una empresa de remodelaciones residenciales mediante:
+1. La orquestación de un **pipeline de SEO (Keyword-a-Blog)** totalmente automatizado con generación de esquemas JSON-LD.
+2. Monitoreo de **grupos de WhatsApp** de alto volumen para detectar emergencias y sugerir respuestas redactadas por IA.
+3. Reemplazo de métricas de anuncios vanidosas por **atribución de ingresos real** conectada a contratos firmados.
+
 ---
 
-## 🏛️ System Architecture
+## 🏛️ System Architecture / Arquitectura del Sistema
 
 ```mermaid
 graph TD
@@ -91,9 +100,10 @@ graph TD
 
 ---
 
-## 📐 Data & AI Strategy
+## 📐 Data & AI Strategy / Estrategia de IA y Datos
 
-### 1. Hybrid LLM Architecture: The Right Model for the Right Job
+### 1. Hybrid LLM Architecture / Arquitectura de LLM Híbrida
+**English:**
 This system uses a **tiered LLM strategy** managed via `litellm`, which provides a unified API across providers:
 
 | Use Case | Model | Rationale |
@@ -103,9 +113,17 @@ This system uses a **tiered LLM strategy** managed via `litellm`, which provides
 | **SEO Blog Generation** | `claude-opus-4-5` | Deep reasoning for long-form, factually accurate, strategically targeted construction content |
 | **Private / Offline Fallback** | `ollama/llama3` | Runs locally on Mac Mini; zero data egress; used for sensitive internal project notes |
 
-This hybrid approach **minimizes cost while maximizing quality** where it matters most — fast alerts via Sonnet, premium content via Opus.
+**Español:**
+El sistema emplea una **estrategia de LLM por niveles** gestionada mediante `litellm`, optimizando costo y rendimiento:
 
-### 2. Revenue Attribution: Closing the Loop
+*   **Claude 4.6 Sonnet**: Utilizado para tareas de baja latencia como la detección de urgencias en WhatsApp y borradores de respuesta rápidos.
+*   **Claude 4.6 Opus**: Reservado para tareas de razonamiento profundo, como generación de contenido SEO estratégico y esquemas JSON-LD técnicos.
+*   **Ollama (Llama3)**: Fallback local para privacidad total y procesamiento offline dentro de la Mac Mini.
+
+---
+
+### 2. Revenue Attribution / Atribución de Ingresos
+**English:**
 The critical business problem is attribution — knowing *which* Facebook campaign generated a *real* signed contract, not just a lead form fill. This is solved through a **relational chain** in the Core Brain:
 
 ```
@@ -113,8 +131,8 @@ ad_campaigns.ad_id  ──→  leads.source_ad_id  ──→  projects.lead_id
      (FB Spend $)          (First Touch)          (Closed Revenue $)
 ```
 
-**How it works:**
-A simple SQL JOIN across these three tables yields **true ROAS (Return on Ad Spend)** based on actual signed contract value — bypassing vanity metrics entirely.
+**Español:**
+El sistema resuelve el problema crítico de la atribución: identificar qué campaña de anuncios generó un **contrato real firmado** y no solo un lead. Esto se logra vinculando el ID del anuncio original con el lead y, finalmente, con el proyecto facturado en la base de datos central.
 
 ---
 
