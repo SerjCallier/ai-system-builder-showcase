@@ -1,0 +1,12 @@
+pandas
+sqlalchemy
+
+# LLM orchestration (unified API for Anthropic, OpenAI, Ollama, etc.)
+litellm
+
+# Utilities
+python-dotenv
+pydantic
+
+# Optional: for future API clients
+requests==2.32.3
