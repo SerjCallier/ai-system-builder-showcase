@@ -109,7 +109,7 @@ A simple SQL JOIN across these tables yields **true ROAS**.
 
 ---
 
-## 🇲🇽 Versión en Español
+## 🇦🇷 Versión en Español
 
 ### 🎯 Resumen Ejecutivo
 Este repositorio demuestra una **arquitectura de orquestación de IA centralizada** que unifica fuentes de datos fragmentadas — Facebook Ads, WhatsApp Business, WordPress y SEMrush — en una única base de datos PostgreSQL *Core Brain* alojada localmente en una Mac Mini.
