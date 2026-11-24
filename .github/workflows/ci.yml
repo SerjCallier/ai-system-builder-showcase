@@ -1,0 +1,22 @@
+name: Attribution Engine CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install core dependencies
+        run: pip install sqlalchemy python-dotenv pydantic
+      - name: Syntax check all Python modules
+        run: python -m compileall -q config.py main.py core scripts tests
+      - name: Run schema & ROAS attribution tests
+        run: python -m unittest discover -s tests -v
